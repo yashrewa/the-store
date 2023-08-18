@@ -17,11 +17,13 @@ main {
 
 .centered {
   text-align: center;
-  margin-top:2rem;
-  margin-left: 4rem;
-  margin-right: 4rem;
-  border:4px #00695c;
+  min-height: 80vh;
+  margin: 2rem 16rem 2rem 16rem;
+  padding: 2rem 16rem;
+  border:2px #00695c;
   border-style: groove;
+  border-radius: 10px;
+  box-shadow: 2px 2px #00695c;
 }
 
 
@@ -70,9 +72,9 @@ main {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: stretch;
-  max-height: 8rem;
+  max-height: 6rem;
 }
 
 .card {
@@ -107,6 +109,9 @@ main {
 }
 
 .card__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     padding: 1rem;
     text-align: center;
 }
@@ -124,13 +129,14 @@ main {
   border-radius: 3px;
   cursor: pointer;
   transition: all 300ms ease-in-out;
+  box-shadow: 1px 1px #00695c;
 }
 
 .btn:hover,
 .btn:active {
   background-color: #00695c;
   color: white;
-  /* transition: all 300ms ease-out; */
+  box-shadow: 2px 2px #00695c;
 }
 
 img.icon{
