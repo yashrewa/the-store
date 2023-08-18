@@ -1,0 +1,25 @@
+[{
+    "id": "001",
+    "title": "CS:GO",
+    "price": "0.00",
+    "description": "Counter-Strike: Global Offensive (CS: GO) expands upon the team-based action gameplay that it pioneered when it was launched 19 years ago.",
+    "imagelink": "https://static.displate.com/280x392/displate/2023-01-31/df8cfd4de5013beef1247029af4e8171_5ddd7619703ad51e0bba729c478ed0f3.jpg"
+}, {
+    "id": "002",
+    "title": "Valorant",
+    "price": "0.00",
+    "description": "tactical shooter produced by RIOT GAMES",
+    "imagelink": "https://i.ebayimg.com/images/g/sjsAAOSwP3Rjwe5p/s-l1600.jpg"
+}, {
+    "id": "003",
+    "title": "Aimlab",
+    "price": "0.00",
+    "description": "Aim Lab is the aim trainer of choice for over 25 Million players, from beginners to esports pros. Our unique aim analysis optimizes your gameplay,",
+    "imagelink": "https://cdn2.steamgriddb.com/file/sgdb-cdn/thumb/66f693ee2fbd75c63408119d7233be86.jpg"
+}, {
+    "id": "004",
+    "title": "OverWatch 2",
+    "price": "0.00",
+    "description": "Overwatch 2 is a free-to-play, always-on, and ever-evolving live game. Team up with friends regardless of platform and jump into the reimagined PvP experience.",
+    "imagelink": "https://m.media-amazon.com/images/M/MV5BMDNkZDVkODEtNjQyYy00NGYwLTljMGQtOTI2MDAwY2ZlOWFmXkEyXkFqcGdeQXVyNjM2MTY3MTY@._V1_.jpg"
+}]
