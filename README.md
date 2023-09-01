@@ -14,8 +14,8 @@ This is a simple Online Shopping Application built using Express.js, a popular w
 
 
 # Technologies Used
-  Express.js
-  Node.js
-  EJS (Embedded JavaScript) for views
+  - Express.js
+  - Node.js
+  - EJS (Embedded JavaScript) for views
 
  
