@@ -37,7 +37,15 @@ module.exports = class Cart {
                 };
                 cart.products = [...cart.products, updatedProduct];
             }
-            cart.totalPrice = parseFloat(cart.totalPrice + +productPrice).toFixed(2);
+            cart.totalPrice = cart.products.reduce((total, product) => {
+                return total + product.qty * +productPrice;
+            }, 0);
+            // if (updatedProduct.qty) {
+            //     cart.totalPrice = cart.totalPrice + +productPrice * updatedProduct.qty;
+            // }
+            // else{
+            //     cart.totalPrice = +productPrice;
+            // }
             // console.log(cart)
             fs.writeFile(p, JSON.stringify(cart), (err) => {
                 console.log(err)
@@ -56,16 +64,14 @@ module.exports = class Cart {
             };
             const product = updatedCart.products.find(product => product.id === id);
 
-            const productQty = product?.qty;
             updatedCart.products = updatedCart.products.filter(p => p.id !== id);
-            if (productQty) {
-                updatedCart.totalPrice -= +price * productQty;
-            }
-            if(updatedCart === 0){
 
-                updatedCart.totalPrice -=  +price;
-            }  
-            
+            if (product.qty) {
+                updatedCart.totalPrice -= +price * product.qty;
+            } else {
+                updatedCart.totalPrice -= +price;
+            }
+
             fs.writeFile(p, JSON.stringify(updatedCart), err => {
                 console.log(err);
             })

@@ -56,9 +56,11 @@ exports.postAddToCart = (req, res, next) => {
 exports.getCart = (req, res, next) => {
     Cart.getCart(cart => {
         Product.fetchAll(products => {
+            
             const cartProducts = [];
             for (product of products) {
-                const cartProductData = cart.products.find(p => p.id === product.id);
+                const cartProductData = cart.products.find(p => product.id === p.id);
+                console.log(cartProductData);
                 if(cartProductData){
                     cartProducts.push({productData: product, qty: cartProductData.qty })
                 }
@@ -66,7 +68,8 @@ exports.getCart = (req, res, next) => {
             // console.log(cartProducts);
             res.render('shop/cart', {
                 pageTitle: "Your Cart",
-                products: cartProducts
+                products: cartProducts,
+                totalPrice: cart.totalPrice
             })
         })
 
