@@ -18,9 +18,12 @@ router.get('/products/:productId', shopController.getProduct)
  
 router.get('/cart', shopController.getCart)
 
-router.post('/cart',shopController.postCart)
+router.post('/cart',shopController.postAddToCart) 
+
+router.post('/cart-delete-item', shopController.postCartDeleteItem)  
 
 router.get('/checkout', shopController.getCheckout)
+
 
 // exports.routes = router;
 // exports.products = products;

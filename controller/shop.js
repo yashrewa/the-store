@@ -1,5 +1,5 @@
 const Product = require('../models/products')
-const Cart = require ('../models/cart')
+const Cart = require('../models/cart')
 
 exports.getProducts = (req, res, next) => {
     Product.fetchAll(products => {
@@ -16,7 +16,7 @@ exports.getProducts = (req, res, next) => {
 exports.getProduct = (req, res, next) => {
     const prodId = req.params.productId;
     Product.findbyId(prodId, product => {
-        res.render('shop/product-detail',{
+        res.render('shop/product-detail', {
             product: product,
             pageTitle: product.title
         })
@@ -40,20 +40,47 @@ exports.getIndex = (req, res, next) => {
     });
 }
 
-exports.postCart = (req, res, next) => {
-    const prodId=req.body.productId;
+
+
+exports.postAddToCart = (req, res, next) => {
+    const prodId = req.body.productId;
     // console.log(prodId)
-    Product.findbyId(prodId, (product)=>{
+    Product.findbyId(prodId, (product) => {
         Cart.addProduct(prodId, product.price)
     })
     res.redirect('/')
 }
 
-exports.getCart = (req, res, next) => {
 
-    res.render('shop/cart', {
-        pageTitle: "Your Cart"
+
+exports.getCart = (req, res, next) => {
+    Cart.getCart(cart => {
+        Product.fetchAll(products => {
+            const cartProducts = [];
+            for (product of products) {
+                const cartProductData = cart.products.find(p => p.id === product.id);
+                if(cartProductData){
+                    cartProducts.push({productData: product, qty: cartProductData.qty })
+                }
+            }
+            // console.log(cartProducts);
+            res.render('shop/cart', {
+                pageTitle: "Your Cart",
+                products: cartProducts
+            })
+        })
+
     })
+}
+exports.postCartDeleteItem = (req, res, next)=> {
+    const itemId = req.body.productId;
+    // console.log(itemId)
+    Product.findbyId(itemId, product => {
+        Cart.deleteProductFromCart(itemId, product.price);
+        
+    })
+    res.redirect('/cart')
+
 }
 
 
