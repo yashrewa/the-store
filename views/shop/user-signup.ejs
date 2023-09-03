@@ -1,0 +1,17 @@
+<%- include('../includes/head.ejs') %>
+
+<body>
+    <%- include('../includes/navigation.ejs')%>
+    <main>
+
+        <form action="/user-signup" method="POST">
+            <input type="email" placeholder="enter your email">
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="password dumb fuck">
+            <input type="date" placeholder="enter DOB">
+            <button type="submit" class="btn"> </button>
+        </form>
+
+        <a href="/shop/user-login"> <button class="btn">Sign-up</button> </a>
+    </main>
+<%- include('../includes/end.ejs')%></body>

@@ -4,14 +4,15 @@ exports.postAddProduct = (req, res, next) => {
     const props = {
         ...req.body
     };
-    console.log(props);
-    Product.create(props)
-        .then(result => console.log(result))
+    // console.log(props);
+    req.user.createProduct(props)
+        .then(result => {
+            res.redirect('/admin/products');
+        })
         .catch(error => console.error(error))
 }
 
 exports.getAddProduct = (req, res, next) => {
-    // res.sendFile(path.join(__dirname, '../', 'views', 'addtocart.html'))
     res.render('admin/edit-product', {
         pageTitle: 'Add Product',
         editing: false
@@ -19,17 +20,28 @@ exports.getAddProduct = (req, res, next) => {
 }
 
 exports.postEditProduct = (req, res, next) => {
-    const props = Object.values(req.body);
-    const udpatetdProducts = new Product(...props);
-    // console.log(...props);
-    udpatetdProducts.save();
-    res.redirect('/admin/products');
+    const props ={ ...req.body};
+    // console.log("data from site",props)
+    Product.findByPk(props.productId)
+    .then(result =>{
+        result.id = req.body.productId;
+        result.title = req.body.title;
+        result.price = req.body.price;
+        result.description = req.body.description;
+        result.imagelink = req.body.imagelink;
+        result.save();
+        // console.log("result from db",result);
+        res.redirect('/admin/products');
+    })
+    .catch(error => console.error(error))
+    // const udpatetdProducts = new Product(...props);
+    // udpatetdProducts.save();
+    // res.redirect('/admin/products');
 }
 
 
-exports.getProducts = (req, res, next) => {
-
-    Product.findAll()
+exports.getProducts = (req, res, next) => { 
+    req.user.getProducts()
         .then(products => {
             res.render('admin/products', {
                 prods: products,
@@ -46,8 +58,9 @@ exports.getEditProduct = (req, res, next) => {
         res.redirect('/');
     }
     const prodId = req.params.productId;
-    Product.findByPk(prodId)
-        .then(product => {
+    req.user.getProducts({where: { id: prodId}})
+        .then(products => {
+            const product = products[0];
             if (!product) {
                 return res.redirect('/')
             }
